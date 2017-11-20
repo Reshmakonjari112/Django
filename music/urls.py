@@ -5,6 +5,7 @@ Created : 14th November 2017
 
 from django.conf.urls import url
 from . import views
+app_name = 'music'
 
 urlpatterns = [
     # /music/

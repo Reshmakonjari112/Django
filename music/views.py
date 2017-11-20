@@ -10,8 +10,8 @@ Created :14 November 2017
 from django.http import HttpResponse
 from .models import Album
 # from django.template import loader
-from django.shortcuts import render
-from django.http import Http404
+from django.shortcuts import render, get_object_or_404
+# from django.http import Http404
 
 
 def index(request):
@@ -37,8 +37,12 @@ def detail(request, album_id):
     # ===============  Commenting out the httpresponse code ===============
     # return HttpResponse("<h2>Details for Album id: " + str(album_id) + " </h2>")
     # ==============================================================
-    try:
-        album = Album.objects.get(pk=album_id)
-    except Album.DoesNotExist:
-        raise Http404("Album does not exist")
+
+    # ===============  Commenting out the try & except step & write in one lin code ===============
+    # try:
+    #     album = Album.objects.get(pk=album_id)
+    # except Album.DoesNotExist:
+    #     raise Http404("Album does not exist")
+    # ==============================================================
+    album = get_object_or_404(Album, pk=album_id)
     return render(request, 'music/detail.html', {'album': album})
